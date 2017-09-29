@@ -67,16 +67,51 @@ def write_articles_list_to_csv(article_list):
     keys = article_list[0].keys()
     with open(os.getcwd() + "\\Initial law processing output" + '\\{}.csv'.format(soup.title.string), 'w', encoding = "UTF-8", 
               newline = '') as f:
-        dict_writer = csv.DictWriter(f, keys)
+        dict_writer = csv.DictWriter(f, keys, delimiter = ';', dialect = 'excel')
         dict_writer.writeheader()
         dict_writer.writerows(article_list)
         
 
 # ============ write all laws into files ==========
 
+#for file in filepath_list:
+#    with open(file, encoding = "UTF-8") as fp:
+#        soup = BeautifulSoup(fp) #make soup object  
+#    list_of_articles = write_soup_law_to_articles_list(soup)
+#    write_articles_list_to_csv(list_of_articles)
+ 
+# =========== write with different encoding ===========
+    
 for file in filepath_list:
     with open(file, encoding = "UTF-8") as fp:
         soup = BeautifulSoup(fp) #make soup object  
     list_of_articles = write_soup_law_to_articles_list(soup)
     write_articles_list_to_csv(list_of_articles)
-    
+ 
+
+# =========== write all csvs to xlsx files :( =================
+
+                                             
+ # write list csv filenames
+ 
+#path_to_csvfiles = os.getcwd() + "\\Initial law processing output" #get path to where csv are stored
+#
+#csv_list = os.listdir(path_to_csvfiles) #list all the html that are in the folder
+#
+#csv_filepath_list = [path_to_csvfiles + "\\" + csv_file for csv_file in csv_list] #get list of filepaths
+#
+# 
+#                                             
+#import glob
+#import csv
+#import xlwt # from http://www.python-excel.org/
+#
+#for csvfile in csv_filepath_list:
+#    wb = xlwt.Workbook()
+#    ws = wb.add_sheet('data')
+#    with open(csvfile, 'rb') as f:
+#        reader = csv.reader(f)
+#        for r, row in enumerate(reader):
+#            for c, val in enumerate(row):
+#                ws.write(r, c, val)
+#    wb.save(csvfile + '.xls')
