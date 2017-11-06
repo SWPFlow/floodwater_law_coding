@@ -1,7 +1,6 @@
 
 import os
 import csv
-import re
 
 path_to_htmlfiles = os.getcwd() + "\\Data" #get path to where csv are stored
 
@@ -26,6 +25,7 @@ soup.title.string #get law title
 for lawcontent in soup.find_all("div", {"id": "lawcontent"}):
     for children in lawcontent.find_all(recursive = True): #recursive = False to only get the next level children
         if children.name == "h5": #h5 tags are around article headers
+            print(children.strong.string)
             title_list = [titlecontent.get_text() for titlecontent in children.find_all("a", recursive = False)]
             print(" ".join(title_list))
             if children.nextSibling.attrs['class'] != ['collapseableArticle']: #make sure after the article header comes law text
@@ -50,8 +50,9 @@ def write_soup_law_to_articles_list(soup_object):
                     print("\n ***** no article text after article title")
                     break
                 paragraphs_list = [paragraph.get_text() for paragraph in children.nextSibling.find_all(["p", "dl", {"compact": "compact"}])]
-                article_list_entry = {'article_title': " ".join(title_list),
-                                  'article_text': "\n".join(paragraphs_list)}
+                article_list_entry = {'article_number': children.strong.string,
+                                      'article_title': " ".join(title_list),
+                                      'article_text': "\n".join(paragraphs_list)}
                 law_list.append(article_list_entry)
                 
     return(law_list)
@@ -68,8 +69,9 @@ def write_soup_law_to_articles_list_nobreaks(soup_object):
                     print("\n ***** no article text after article title")
                     break
                 paragraphs_list = [paragraph.get_text() for paragraph in children.nextSibling.find_all(["p", "dl", {"compact": "compact"}])]
-                article_list_entry = {'article_title': " ".join(title_list),
-                                  'article_text': " ".join(paragraphs_list)}
+                article_list_entry = {'article_number': children.strong.string,
+                                      'article_title': " ".join(title_list),
+                                      'article_text': " ".join(paragraphs_list)}
                 law_list.append(article_list_entry)
                 
     return(law_list)
