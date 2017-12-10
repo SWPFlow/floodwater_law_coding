@@ -1,0 +1,13 @@
+name: floodwater_law_net
+title: floodwater_law_net
+username:
+account: marioangst
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 246814
+bundleId: 1126311
+url: https://marioangst.shinyapps.io/floodwater_law_net/
+when: 1512922189.04235
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: prepare_appdata.R|original_data/AuenV.csv|original_data/AVO.csv|original_data/BV.csv|original_data/BZG.csv|original_data/GSchG.csv|original_data/GSchV.csv|original_data/issuelist.csv|original_data/NHG.csv|original_data/NHV.csv|original_data/RPG.csv|original_data/RPV.csv|original_data/StAG.csv|original_data/StAV.csv|original_data/VaG.csv|original_data/VNAZ.csv|original_data/VWAS.csv|original_data/WaG.csv|original_data/WaV.csv|original_data/WBG.csv|original_data/WBV.csv
